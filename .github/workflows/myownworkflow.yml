@@ -2,14 +2,21 @@ name: Hello World Workflow
 
 on: [push]
 
+env:  # 🌐 Global env (applies to all jobs and steps)
+  APP_ENV: production
+  OWNER: StealthRagnar
+
 jobs:
   say-hello:
     runs-on: ubuntu-latest
+    env:  # 💼 Job-level env (overrides global for this job)
+      JOB_VAR: HelloFromJob
 
     steps:
       - name: Print greeting
         run: echo "👋 Hey StealthRagnar, you’re running your first GitHub Action!"
-      
+        env:  # 🧱 Step-level env (only applies here)
+          STEP_VAR: OnlyVisibleHere
       - name: Show date
         run: date
 
